@@ -1,6 +1,6 @@
 import Image from "next/image";
-import css from "./scss/test.module.scss";
+import "./scss/test.scss";
 
 export default function Home() {
-  return <main className={css.testClass}>TEST</main>;
+  return <main className="testClass">TEST</main>;
 }
