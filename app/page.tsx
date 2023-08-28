@@ -1,6 +1,9 @@
-import Image from "next/image";
-import "./scss/test.scss";
+import { MainContent } from "./components/layouts/MainContent";
 
 export default function Home() {
-  return <main className=""></main>;
+  return (
+    <>
+      <MainContent />
+    </>
+  );
 }
