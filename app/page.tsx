@@ -1,9 +1,7 @@
-import { MainContent } from "./components/layouts/MainContent";
-
 export default function Home() {
   return (
     <>
-      <MainContent />
+      <div className="basis-10/12">MainContent</div>
     </>
   );
 }
