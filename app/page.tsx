@@ -1,6 +1,11 @@
-import Image from "next/image";
-import "./scss/test.scss";
+import { MainContent } from "./components/layouts/MainContent";
+import { Sidebar } from "./components/layouts/Sidebar";
 
 export default function Home() {
-  return <main className=""></main>;
+  return (
+    <>
+      <Sidebar />
+      <MainContent />
+    </>
+  );
 }
