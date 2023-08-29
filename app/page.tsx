@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Home() {
   return (
     <>
@@ -7,16 +9,16 @@ export default function Home() {
             <a href="/">TOP</a>
           </li>
           <li>
-            <a href="/user01/pages">/[id]/page ユーザーアイテム一覧</a>
+            <Link href="/user01/pages">/[id]/page ユーザーアイテム一覧</Link>
           </li>
           <li>
-            <a href="/user01/favorites">/[id]/favorites ユーザーお気に入り一覧</a>
+            <Link href="/user01/favorites">/[id]/favorites ユーザーお気に入り一覧</Link>
           </li>
           <li>
-            <a href="/user01/tags">/[id]/tags ユーザーが設定したタグ一覧</a>
+            <Link href="/user01/tags">/[id]/tags ユーザーが設定したタグ一覧</Link>
           </li>
           <li>
-            <a href="/user01/tags/tag_name">/[id]/tags/tag_name ユーザーが設定したタグのページ一覧</a>
+            <Link href="/user01/tags/tag_name">/[id]/tags/tag_name ユーザーが設定したタグのページ一覧</Link>
           </li>
         </ul>
       </div>
