@@ -17,7 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="ja">
       <body className={inter.className}>
         <Header />
-        <main className="home flex min-h-screen bg-sky-100">{children}</main>
+        <main className="home flex justify-center min-h-screen bg-sky-100">{children}</main>
         <Footer />
       </body>
     </html>
