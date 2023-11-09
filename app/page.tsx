@@ -1,7 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
+import { ClipData } from "./@types/index";
 
-export default function Home() {
+export default async function Home() {
+  const response = await fetch("http://localhost:3000/api?");
+  if (!response.ok) throw new Error("error dayo");
+  const clipData = await response.json();
+
   return (
     <>
       <div className="basis-4/12">
@@ -25,18 +30,20 @@ export default function Home() {
       </div>
       <div className="basis-8/12 flex">
         <ul>
-          <li className="clipItem">
-            <Link href="/">
-              <div className="clipThumb">
-                <Image src="/asset/img/img01.png" width={150} height={150} alt="test" />
-              </div>
-              <div className="clipData">
-                <h3 className="clipTitle">タイトル</h3>
-                <p className="clipDescription">説明説明説明説明説明説明説明説明説明説明説明説明説明説明</p>
-                <span className="clipDate">2023.01.01</span>
-              </div>
-            </Link>
-          </li>
+          {clipData.map((data: ClipData) => (
+            <li key={data.date} className="clipItem">
+              <Link href={data.url}>
+                <div className="clipThumb">
+                  <Image src={data.imageUrl} width={150} height={150} alt="test" />
+                </div>
+                <div className="clipData">
+                  <h3 className="clipTitle">{data.title}</h3>
+                  <p className="clipDescription">{data.description}</p>
+                  <span className="clipDate">{data.date}</span>
+                </div>
+              </Link>
+            </li>
+          ))}
         </ul>
       </div>
     </>
