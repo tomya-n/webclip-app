@@ -20,6 +20,6 @@ model ClipData{
   tag         String[]
   archived    Boolean
   user        String
-  createdAt   DateTime
+  createdAt   DateTime @default(now())
   updatedAt   DateTime
 }

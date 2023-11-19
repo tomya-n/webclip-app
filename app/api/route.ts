@@ -1,17 +1,38 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
+import { PrismaClient } from "@prisma/client";
 import { ClipData } from "../@types/index";
 
-const clipData: ClipData[] = [
-  {
-    title: "testData1",
-    url: "http://xxx.com",
-    description: "testdescription",
-    date: "2023-11-01",
-    memo: "メモ",
-    imageUrl: "/asset/img/img01.png",
-  },
-];
+const prisma = new PrismaClient();
 
-export function GET() {
-  return NextResponse.json(clipData);
+// async function main() {
+//   try {
+//     await prisma.$connect();
+//   } catch (error) {
+//     return Error("error");
+//   }
+// }
+
+export async function GET(req: Request, res: NextResponse) {
+  try {
+    const clipData = await prisma.clipData.findMany();
+
+    return NextResponse.json({ clipData });
+  } catch (error) {
+    return NextResponse.json({ error });
+  } finally {
+    await prisma.$disconnect();
+  }
+}
+
+export async function PUT(req: Request, res: NextResponse) {
+  const { id, bookmarked } = await req.json();
+
+  const updateUser = await prisma.clipData.update({
+    where: {
+      id,
+    },
+    data: {
+      bookmarked,
+    },
+  });
 }

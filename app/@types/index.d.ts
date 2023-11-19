@@ -1,8 +1,12 @@
 export type ClipData = {
-  title: string;
-  url: string;
-  description: string;
-  date: string;
-  memo: string;
-  imageUrl: string;
+  id: number;
+  title: String;
+  description: String;
+  url: String;
+  bookmarked: Boolean;
+  tag: String[];
+  archived: Boolean;
+  user: String;
+  createdAt: DateTime;
+  updatedAt: DateTime;
 };
