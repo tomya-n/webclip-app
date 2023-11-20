@@ -27,12 +27,20 @@ export async function GET(req: Request, res: NextResponse) {
 export async function PUT(req: Request, res: NextResponse) {
   const { id, bookmarked } = await req.json();
 
-  const updateUser = await prisma.clipData.update({
-    where: {
-      id,
-    },
-    data: {
-      bookmarked,
-    },
-  });
+  try {
+    const updateUser = await prisma.clipData.update({
+      where: {
+        id,
+      },
+      data: {
+        bookmarked,
+      },
+    });
+
+    return NextResponse.json({ updateUser });
+  } catch (error) {
+    return NextResponse.json({ error });
+  } finally {
+    await prisma.$disconnect();
+  }
 }
