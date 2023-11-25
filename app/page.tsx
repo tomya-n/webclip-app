@@ -1,3 +1,4 @@
+import AddForm from "./components/AddForm";
 import ClipItem from "./components/ClipItem";
 
 export default async function Home() {
@@ -11,6 +12,7 @@ export default async function Home() {
       <ul className="basis-11/12">
         <ClipItem clipData={clipData.clipData} />
       </ul>
+      <AddForm />
     </>
   );
 }

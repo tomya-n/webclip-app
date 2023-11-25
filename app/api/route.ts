@@ -24,6 +24,33 @@ export async function GET(req: Request, res: NextResponse) {
   }
 }
 
+export async function POST(req: Request, res: NextResponse) {
+  const { title, url, description, tags } = await req.json();
+  console.log(title, url, description, tags);
+  console.log(typeof tags);
+
+  try {
+    const post = await prisma.clipData.create({
+      data: {
+        title,
+        description,
+        url,
+        bookmarked: false,
+        tags,
+        archived: false,
+        user: "admin",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+    });
+    return NextResponse.json({ post });
+  } catch (error) {
+    return NextResponse.json({ error });
+  } finally {
+    await prisma.$disconnect();
+  }
+}
+
 export async function PUT(req: Request, res: NextResponse) {
   const { id, bookmarked } = await req.json();
 

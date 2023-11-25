@@ -1,0 +1,18 @@
+{
+  "clipData": [
+    {
+      "id": 1,
+      "title": "Google",
+      "description": "googleのトップページgoogleのトップページgoogleのトップページgoogleのトップページgoogleのトップページgoogleのトップページgoogleのトップページgoogleのトップページgoogleのトップページgoogleのトップページgoogleのトップページgoogleのトップページgoogleのトップページ",
+      "url": "https://www.google.co.jp",
+      "bookmark": true,
+      "tag": [
+        "website",
+        "google"
+      ],
+      "user": "admin",
+      "createdAt": "2023-11-10T08:33:19.637Z",
+      "updatedAt": "2023-11-10T08:33:19.637Z"
+    }
+  ]
+}
