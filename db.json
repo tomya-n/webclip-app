@@ -1,18 +1,30 @@
 {
   "clipData": [
     {
-      "id": 1,
-      "title": "Google",
-      "description": "googleのトップページgoogleのトップページgoogleのトップページgoogleのトップページgoogleのトップページgoogleのトップページgoogleのトップページgoogleのトップページgoogleのトップページgoogleのトップページgoogleのトップページgoogleのトップページgoogleのトップページ",
-      "url": "https://www.google.co.jp",
-      "bookmark": true,
-      "tag": [
-        "website",
-        "google"
+      "title": "test1",
+      "url": "https://zenn.dev/",
+      "description": "teetteetteetteetteetteetteetteetteetteetteetteet",
+      "tags": [
+        "aaa",
+        "bbb",
+        "ccc"
       ],
-      "user": "admin",
-      "createdAt": "2023-11-10T08:33:19.637Z",
-      "updatedAt": "2023-11-10T08:33:19.637Z"
+      "bookmarked": false,
+      "createdAt": "2023-11-28T09:20:16.746Z",
+      "id": 1
+    },
+    {
+      "title": "test2",
+      "url": "https://zenn.dev/",
+      "description": "descriptionのテスト入力",
+      "tags": [
+        "aaa",
+        "bbb",
+        "ccc"
+      ],
+      "bookmarked": true,
+      "createdAt": "2023-11-28T09:22:18.437Z",
+      "id": 2
     }
   ]
 }

@@ -8,6 +8,8 @@ type postData = {
   url: string;
   description: string;
   tags: string;
+  bookmarked: boolean;
+  createdAt: Date;
 };
 
 const AddForm = () => {
@@ -18,6 +20,8 @@ const AddForm = () => {
     url: "",
     description: "",
     tags: "",
+    bookmarked: false,
+    createdAt: new Date(),
   });
 
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -28,11 +32,11 @@ const AddForm = () => {
   const onSubmitHandler = async (e: React.MouseEvent) => {
     e.preventDefault();
 
-    const newTags = data.tags.split(",");
+    const newTags = data.tags.split(" ");
     const newData = { ...data, tags: newTags };
     console.log(newData);
 
-    const res = await fetch(`http://localhost:3000/api`, {
+    const res = await fetch(`http://localhost:5555/clipData/`, {
       method: "POST",
       headers: {
         "content-Type": "application/json",
@@ -40,7 +44,7 @@ const AddForm = () => {
       body: JSON.stringify(newData),
     });
 
-    setData({ title: "", url: "", description: "", tags: "" });
+    setData({ title: "", url: "", description: "", tags: "", bookmarked: false, createdAt: new Date() });
     router.push("/");
     router.refresh();
 
@@ -53,7 +57,7 @@ const AddForm = () => {
         <input className="mr-5 outline-none" value={data.title} onChange={onChangeHandler} type="text" name="title" placeholder="Title" />
         <input className="mr-5 outline-none" value={data.url} onChange={onChangeHandler} type="text" name="url" placeholder="URL" />
         <input className="mr-5 outline-none" value={data.description} onChange={onChangeHandler} type="text" name="description" placeholder="Description" />
-        <input className="mr-5 outline-none" value={data.tags} onChange={onChangeHandler} type="text" name="tags" placeholder="タグ (,で区切る)" />
+        <input className="mr-5 outline-none" value={data.tags} onChange={onChangeHandler} type="text" name="tags" placeholder="スペースで区切る" />
         <button className="mr-5 bg-white" type="submit">
           追加する
         </button>
