@@ -6,7 +6,7 @@ export default async function Home() {
     cache: "no-cache",
   });
   const clipData = await res.json();
-  console.log(clipData);
+  // console.log(clipData);
 
   return (
     <>

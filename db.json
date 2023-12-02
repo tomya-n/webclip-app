@@ -22,9 +22,47 @@
         "bbb",
         "ccc"
       ],
-      "bookmarked": true,
+      "bookmarked": false,
       "createdAt": "2023-11-28T09:22:18.437Z",
       "id": 2
+    },
+    {
+      "title": "aaa",
+      "url": "https://zenn.dev/",
+      "description": "descriptionのテスト入力",
+      "tags": [
+        "xyz",
+        "ooo"
+      ],
+      "bookmarked": false,
+      "createdAt": "2023-12-02T10:57:07.436Z",
+      "id": 3
     }
+  ],
+  "tags": [
+    [
+      "aaa",
+      "bbb",
+      "ccc"
+    ],
+    [
+      "ddd",
+      "eee",
+      "fff"
+    ],
+    [
+      "ggg",
+      "hhh",
+      "iii"
+    ],
+    [
+      "eee",
+      "fff",
+      "ggg"
+    ],
+    [
+      "xyz",
+      "ooo"
+    ]
   ]
 }
