@@ -7,12 +7,12 @@ export default async function Home() {
   });
   if (!res.ok) throw new Error("error dayo");
 
-  const clipData = await res.json();
+  const { clipData } = await res.json();
 
   return (
     <>
       <ul className="basis-11/12">
-        <ClipItem clipData={clipData.clipData} />
+        <ClipItem clipData={clipData} />
       </ul>
       <AddForm />
     </>
