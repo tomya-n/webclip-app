@@ -4,7 +4,7 @@ export type ClipData = {
   description: String;
   url: String;
   bookmarked: Boolean;
-  tags: String[];
+  tag: String[];
   archived: Boolean;
   user: String;
   createdAt: DateTime;

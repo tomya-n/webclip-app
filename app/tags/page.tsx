@@ -1,15 +1,12 @@
 import Link from "next/link";
 
 export default async function Home() {
-  const res = await fetch(`http://localhost:5555/tags`, {
-    cache: "no-cache",
-  });
-  const tags = await res.json();
-  const tagFlat: string[] = Array.from(new Set(tags.flat()));
+  // const tag = await res.json();
+  // const tagFlat: string[] = Array.from(new Set(tag.flat()));
 
   return (
     <>
-      <div>タグ一覧</div>
+      {/* <div>タグ一覧</div>
       <ul className="flex">
         {tagFlat.map((tag: string, index: number) => (
           <li key={index} className="mr-1">
@@ -18,7 +15,7 @@ export default async function Home() {
             </Link>
           </li>
         ))}
-      </ul>
+      </ul> */}
     </>
   );
 }

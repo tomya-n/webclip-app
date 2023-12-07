@@ -36,7 +36,7 @@ const AddForm = () => {
     const newData = { ...data, tags: newTags };
     console.log(newData);
 
-    const resNewData = await fetch(`http://localhost:5555/clipData/`, {
+    const resNewData = await fetch(`http://localhost:5432/clipData/`, {
       method: "POST",
       headers: {
         "content-Type": "application/json",
@@ -44,7 +44,7 @@ const AddForm = () => {
       body: JSON.stringify(newData),
     });
 
-    const resTagData = await fetch(`http://localhost:5555/tags/`, {
+    const resTagData = await fetch(`http://localhost:5432/tags/`, {
       method: "POST",
       headers: {
         "content-Type": "application/json",

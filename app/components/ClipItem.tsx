@@ -11,32 +11,38 @@ import { ClipData } from "../@types";
 
 export default function ClipItem({ clipData }: { clipData: ClipData[] }) {
   const router = useRouter();
+  console.log(clipData);
 
-  const [isBookmarked, setBookmarked] = useState(false);
-
+  // const [isBookmarked, setBookmarked] = useState(false);
+  const [isBookmarked, setBookmarked] = useState(clipData.map((data) => data.bookmarked));
   const toggleBookmark = (index: number) => {
-    const { id } = clipData[index];
-    setBookmarked((prev) => !prev);
-    clipData[index].bookmarked = isBookmarked;
-    const putData = clipData[index];
+    console.log(index);
+    const newBookmark = [...isBookmarked];
+    newBookmark[index] = !newBookmark[index];
+    console.log(newBookmark);
+    console.log((clipData[index].bookmarked = newBookmark[index]));
+    setBookmarked(newBookmark);
 
-    fetch(`http://localhost:5555/clipData/${id}`, {
+    const { id, bookmarked } = clipData[index];
+
+    fetch(`http://localhost:3000/api`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(putData),
+      body: JSON.stringify({ id, bookmarked }),
     });
   };
 
   const deleteBookmark = (index: number) => {
     const { id } = clipData[index];
 
-    fetch(`http://localhost:5555/clipData/${id}`, {
+    fetch(`http://localhost:3000/api`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
+      body: JSON.stringify({ id }),
     });
     router.push("/");
     router.refresh();
@@ -53,8 +59,8 @@ export default function ClipItem({ clipData }: { clipData: ClipData[] }) {
             <p className="clipDescription text-xs w-11/12 line-clamp-1">{data.description}</p>
             <div className="flex justify-between mt-3">
               <ul className="flex">
-                {Array.isArray(data.tags)
-                  ? data.tags.map((tag, tagIndex) => (
+                {Array.isArray(data.tag)
+                  ? data.tag.map((tag, tagIndex) => (
                       <li key={tagIndex} className="pr-1 font-thin text-sm">
                         <Link href={`/tags/${tag}`} target="_blank" className="hover:underline bg-slate-200 px-1">
                           {tag}

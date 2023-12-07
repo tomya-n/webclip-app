@@ -2,7 +2,7 @@ import ClipItem from "../../components/ClipItem";
 import { ClipData } from "../../@types/index.d";
 
 export default async function Home({ params }: { params: { tag: string } }) {
-  const resClipData = await fetch(`http://localhost:5555/clipData`, {
+  const resClipData = await fetch(`http://localhost:5432/clipData`, {
     cache: "no-cache",
   });
   const clipData = await resClipData.json();
