@@ -17,9 +17,16 @@ model ClipData{
   description String?
   url         String
   bookmarked  Boolean
-  tag         String[]
+  tag Tags @relation(fields: [tagid],references: [id])
+  tagid Int
   archived    Boolean
   user        String
   createdAt   DateTime @default(now())
   updatedAt   DateTime
+}
+
+model Tags{
+  id Int @id @default(autoincrement())
+  naem String
+  tag ClipData[]
 }
