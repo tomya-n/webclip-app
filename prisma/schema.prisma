@@ -27,6 +27,6 @@ model ClipData{
 
 model Tags{
   id Int @id @default(autoincrement())
-  naem String
+  name String
   tag ClipData[]
 }
