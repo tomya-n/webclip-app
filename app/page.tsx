@@ -1,5 +1,6 @@
 import AddForm from "./components/AddForm";
 import ClipItem from "./components/ClipItem";
+import { useRouter } from "next/router";
 
 export default async function Home() {
   const res = await fetch("http://localhost:3000/api", {

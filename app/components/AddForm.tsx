@@ -1,27 +1,20 @@
 "use client";
 
 import React, { ChangeEvent, useState } from "react";
-import { useRouter } from "next/navigation";
 
 type postData = {
   title: string;
   url: string;
   description: string;
   tags: string;
-  bookmarked: boolean;
-  createdAt: Date;
 };
 
 const AddForm = () => {
-  const router = useRouter();
-
   const [data, setData] = useState<postData>({
     title: "",
     url: "",
     description: "",
     tags: "",
-    bookmarked: false,
-    createdAt: new Date(),
   });
 
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -34,29 +27,23 @@ const AddForm = () => {
 
     const newTags = data.tags.split(" ");
     const newData = { ...data, tags: newTags };
-    console.log(newData);
+    console.log("newdata", newData);
 
-    const resNewData = await fetch(`http://localhost:5432/clipData/`, {
-      method: "POST",
-      headers: {
-        "content-Type": "application/json",
-      },
-      body: JSON.stringify(newData),
-    });
+    try {
+      const resNewData = await fetch(`http://localhost:3000/api`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newData),
+      });
 
-    const resTagData = await fetch(`http://localhost:5432/tags/`, {
-      method: "POST",
-      headers: {
-        "content-Type": "application/json",
-      },
-      body: JSON.stringify(newTags),
-    });
-
-    setData({ title: "", url: "", description: "", tags: "", bookmarked: false, createdAt: new Date() });
-    router.push("/");
-    router.refresh();
-    resNewData.json();
-    return resTagData.json();
+      await resNewData.json();
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setData({ title: "", url: "", description: "", tags: "" });
+    }
   };
 
   return (

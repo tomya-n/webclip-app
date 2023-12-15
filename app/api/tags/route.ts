@@ -13,12 +13,12 @@ async function main() {
 }
 
 export async function GET(req: Request, res: NextResponse) {
-  // try {
-  //   const clipData = await prisma.clipData.findMany();
-  //   return NextResponse.json({ clipData });
-  // } catch (error) {
-  //   return NextResponse.json({ error });
-  // } finally {
-  //   await prisma.$disconnect();
-  // }
+  try {
+    const clipData = await prisma.clipData.findMany();
+    return NextResponse.json({ clipData });
+  } catch (error) {
+    return NextResponse.json({ error });
+  } finally {
+    await prisma.$disconnect();
+  }
 }

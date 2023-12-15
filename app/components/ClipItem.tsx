@@ -7,13 +7,11 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faTrash } from "@fortawesome/free-solid-svg-icons";
 
-import { ClipData } from "../@types";
+import { ClipData, Tag } from "../@types";
 
 export default function ClipItem({ clipData }: { clipData: ClipData[] }) {
   const router = useRouter();
-  console.log(clipData);
 
-  // const [isBookmarked, setBookmarked] = useState(false);
   const [isBookmarked, setBookmarked] = useState(clipData.map((data) => data.bookmarked));
   const toggleBookmark = (index: number) => {
     console.log(index);
@@ -59,11 +57,11 @@ export default function ClipItem({ clipData }: { clipData: ClipData[] }) {
             <p className="clipDescription text-xs w-11/12 line-clamp-1">{data.description}</p>
             <div className="flex justify-between mt-3">
               <ul className="flex">
-                {Array.isArray(data.tag)
-                  ? data.tag.map((tag, tagIndex) => (
+                {Array.isArray(data.tags)
+                  ? data.tags.map((tag, tagIndex) => (
                       <li key={tagIndex} className="pr-1 font-thin text-sm">
-                        <Link href={`/tags/${tag}`} target="_blank" className="hover:underline bg-slate-200 px-1">
-                          {tag}
+                        <Link href={`/tags/${tag.name}`} target="_blank" className="hover:underline bg-slate-200 px-1">
+                          {tag.name}
                         </Link>
                       </li>
                     ))

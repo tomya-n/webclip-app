@@ -14,7 +14,12 @@ async function main() {
 
 export async function GET(req: Request, res: NextResponse) {
   try {
-    const clipData = await prisma.clipData.findMany();
+    const clipData = await prisma.clipData.findMany({
+      include: {
+        tags: true,
+      },
+    });
+    console.log(clipData);
 
     return NextResponse.json({ clipData });
   } catch (error) {
@@ -27,7 +32,8 @@ export async function GET(req: Request, res: NextResponse) {
 export async function POST(req: Request, res: NextResponse) {
   const { title, url, description, tags } = await req.json();
   console.log(title, url, description, tags);
-  console.log(typeof tags);
+
+  console.log(tags);
   try {
     const post = await prisma.clipData.create({
       data: {
@@ -35,15 +41,21 @@ export async function POST(req: Request, res: NextResponse) {
         description,
         url,
         bookmarked: false,
-        tags,
         archived: false,
         user: "admin",
         createdAt: new Date(),
         updatedAt: new Date(),
+        tags: {
+          connectOrCreate: tags.map((tag: string) => ({
+            where: { name: tag },
+            create: { name: tag },
+          })),
+        },
       },
     });
     return NextResponse.json({ post });
   } catch (error) {
+    console.error("Error", error);
     return NextResponse.json({ error });
   } finally {
     await prisma.$disconnect();

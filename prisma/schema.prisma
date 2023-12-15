@@ -16,17 +16,16 @@ model ClipData{
   title       String
   description String?
   url         String
-  bookmarked  Boolean
-  tag Tags @relation(fields: [tagid],references: [id])
-  tagid Int
+  bookmarked  Boolean @default(false)
+  tags Tags[]
   archived    Boolean
   user        String
   createdAt   DateTime @default(now())
-  updatedAt   DateTime
+  updatedAt   DateTime @updatedAt
 }
 
 model Tags{
   id Int @id @default(autoincrement())
-  name String
-  tag ClipData[]
+  name String @unique
+  clips ClipData[]
 }

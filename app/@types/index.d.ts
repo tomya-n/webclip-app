@@ -4,9 +4,14 @@ export type ClipData = {
   description: String;
   url: String;
   bookmarked: Boolean;
-  tag: String[];
+  tags: Tag[];
   archived: Boolean;
   user: String;
   createdAt: DateTime;
   updatedAt: DateTime;
+};
+
+export type Tag = {
+  id: number;
+  name: String;
 };
