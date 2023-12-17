@@ -1,6 +1,5 @@
 import { NextResponse, NextRequest } from "next/server";
 import { PrismaClient } from "@prisma/client";
-// import { ClipData } from "../@types/index";
 
 const prisma = new PrismaClient();
 
@@ -14,8 +13,8 @@ async function main() {
 
 export async function GET(req: Request, res: NextResponse) {
   try {
-    const clipData = await prisma.clipData.findMany();
-    return NextResponse.json({ clipData });
+    const tagData = await prisma.tags.findMany();
+    return NextResponse.json({ tagData });
   } catch (error) {
     return NextResponse.json({ error });
   } finally {
