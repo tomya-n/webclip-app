@@ -12,8 +12,8 @@ export default async function Home({ params }: { params: { tag: string } }) {
 
   return (
     <>
-      <div>{params.tag}の一覧</div>
-      <ul className="basis-11/12">
+      <div className="mb-5">{params.tag}の一覧</div>
+      <ul>
         <ClipItem clipData={clipData} />
       </ul>
     </>
