@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "User Item / WebClip App",
-  description: "ユーザーアイテム一覧",
+  title: "Tag Item / WebClip App",
+  description: "アイテム一覧",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  return (
+    <>
+      <div className="w-11/12">{children}</div>
+    </>
+  );
 }
