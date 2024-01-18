@@ -31,9 +31,6 @@ export async function GET(req: Request, res: NextResponse) {
 
 export async function POST(req: Request, res: NextResponse) {
   const { title, url, description, tags } = await req.json();
-  console.log(title, url, description, tags);
-
-  console.log(tags);
   try {
     const post = await prisma.clipData.create({
       data: {
