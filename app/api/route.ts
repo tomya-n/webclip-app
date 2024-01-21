@@ -19,7 +19,7 @@ export async function GET(req: Request, res: NextResponse) {
         tags: true,
       },
     });
-    console.log(clipData);
+    // console.log(clipData);
 
     return NextResponse.json({ clipData });
   } catch (error) {
