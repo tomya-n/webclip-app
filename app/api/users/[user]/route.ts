@@ -21,8 +21,6 @@ export async function GET(req: Request, { params }: { params: { user: string } }
         tags: true,
       },
     });
-    console.log(clipData);
-    console.log(params.user);
 
     return NextResponse.json({ clipData });
   } catch (error) {

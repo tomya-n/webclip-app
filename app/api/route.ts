@@ -22,7 +22,6 @@ export async function GET(req: Request, res: NextResponse) {
         createdAt: "desc",
       },
     });
-    // console.log(clipData);
 
     return NextResponse.json({ clipData });
   } catch (error) {

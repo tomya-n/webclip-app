@@ -19,8 +19,6 @@ export async function GET(req: Request, res: NextResponse) {
       },
     });
 
-    console.log(bookmark);
-
     return NextResponse.json({ bookmark });
   } catch (error) {
     return NextResponse.json({ error });
