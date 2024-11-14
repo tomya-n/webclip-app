@@ -47,7 +47,7 @@ const AddForm = () => {
   };
 
   return (
-    <div className="fixed bottom-0 left-0 bg-blue-600 p-8 w-full">
+    <div className="fixed bottom-0 left-0 bg-stone-950 p-8 w-full">
       <form method="post" onSubmit={onSubmitHandler}>
         <input className="mr-5 outline-none" value={data.title} onChange={onChangeHandler} type="text" name="title" placeholder="Title" />
         <input className="mr-5 outline-none" value={data.url} onChange={onChangeHandler} type="text" name="url" placeholder="URL" />
