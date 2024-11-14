@@ -9,7 +9,7 @@ const Navigation = () => {
           <Link href={"/tags"}>タグリスト</Link>
         </li>
         <li className="text-xm m-2">
-          <Link href={"/pins"}>ピンリスト</Link>
+          <Link href={"/bookmark"}>ブクマ</Link>
         </li>
       </ul>
     </>
