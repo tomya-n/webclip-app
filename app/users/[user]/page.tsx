@@ -7,6 +7,7 @@ export default async function Home({ params }: { params: { user: string } }) {
   if (!res.ok) throw new Error("エラー発生！");
 
   const { clipData } = await res.json();
+  console.log(clipData);
 
   return (
     <>

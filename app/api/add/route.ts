@@ -46,6 +46,7 @@ export async function GET(req: NextRequest, res: NextResponse) {
   filteredMetaData.forEach(({ name, content }) => {
     formattedMetaData[name] = content;
   });
+  console.log(formattedMetaData);
 
   const { title, url, description, tags } = formattedMetaData;
   try {

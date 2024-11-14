@@ -14,8 +14,11 @@ export default function ClipItem({ clipData }: { clipData: ClipData[] }) {
 
   const [isBookmarked, setBookmarked] = useState(clipData.map((data) => data.bookmarked));
   const toggleBookmark = (index: number) => {
+    console.log(index);
     const newBookmark = [...isBookmarked];
     newBookmark[index] = !newBookmark[index];
+    console.log(newBookmark);
+    console.log((clipData[index].bookmarked = newBookmark[index]));
     setBookmarked(newBookmark);
 
     const { id, bookmarked } = clipData[index];

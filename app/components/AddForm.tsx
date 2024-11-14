@@ -19,6 +19,7 @@ const AddForm = () => {
 
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    console.log(data);
   };
 
   const onSubmitHandler = async (e: React.MouseEvent) => {
@@ -26,6 +27,7 @@ const AddForm = () => {
 
     const newTags = data.tags.split(" ");
     const newData = { ...data, tags: newTags };
+    console.log("newdata", newData);
 
     try {
       const resNewData = await fetch(`http://localhost:3000/api`, {
