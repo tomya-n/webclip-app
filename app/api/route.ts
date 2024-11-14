@@ -18,6 +18,9 @@ export async function GET(req: Request, res: NextResponse) {
       include: {
         tags: true,
       },
+      orderBy: {
+        createdAt: "desc",
+      },
     });
     // console.log(clipData);
 
