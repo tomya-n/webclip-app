@@ -42,35 +42,11 @@ export async function GET(req: NextRequest, res: NextResponse) {
   const filteredMetaData = metaData.filter((item) => ["title", "url", "description"].includes(item.name));
 
   // データ構造を整形
-  const formattedMetaData: FormatData = { title: "", url: "", description: "", tags: ["test"] };
+  const formattedMetaData: FormatData = { title: "", url: "", description: "", tags: ["あとで読むらしい"] };
   filteredMetaData.forEach(({ name, content }) => {
     formattedMetaData[name] = content;
   });
   console.log(formattedMetaData);
-
-  // const filteredMetaData = metaData.reduce((acc, item) => {
-  //   const isOG = item.name.startsWith("og:");
-  //   const baseName = isOG ? item.name.slice(3) : item.name;
-  //   const baseExists = acc.some((el) => el.name === baseName);
-  //   const ogExists = acc.some((el) => el.name === `og:${baseName}`);
-
-  //   if (!isOG && !ogExists) {
-  //     acc.push(item);
-  //   } else if (isOG && !baseExists) {
-  //     acc.push(item);
-  //   }
-
-  //   return acc;
-  // }, []);
-
-  // const filterMetaData = filteredMetaData
-  //   .filter((item) => item.name === "title" || item.name === "og:title" || item.name === "url" || item.name === "og:url" || item.name === "description" || item.name === "og:description")
-  //   .sort((a, b) => {
-  //     const aIsOG = a.name.startsWith("og:");
-  //     const bIsOG = b.name.startsWith("og:");
-  //     return aIsOG === bIsOG ? 0 : aIsOG ? -1 : 1;
-  //   });
-  // console.log(filterMetaData);
 
   const { title, url, description, tags } = formattedMetaData;
   try {

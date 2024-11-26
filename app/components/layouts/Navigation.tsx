@@ -5,8 +5,11 @@ const Navigation = () => {
   return (
     <>
       <ul className="flex">
-        <li className="text-xs">
-          <Link href={"/tags"}>Tag一覧</Link>
+        <li className="text-xm m-2">
+          <Link href={"/tags"}>タグリスト</Link>
+        </li>
+        <li className="text-xm m-2">
+          <Link href={"/bookmark"}>ブクマ</Link>
         </li>
       </ul>
     </>

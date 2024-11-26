@@ -8,8 +8,8 @@ import { Header } from "./components/layouts/Header";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "WebClip App",
-  description: "portfolio app",
+  title: "みんなdeブックマーク",
+  description: "みんなdeブックマーク",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
