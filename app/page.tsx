@@ -3,7 +3,7 @@ import ClipItem from "./components/ClipItem";
 import { useRouter } from "next/router";
 import { fetchData } from "./utils/fetchData";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const API_URL = process.env.API_URL;
 
 export default async function Home() {
   try{

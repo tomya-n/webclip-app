@@ -9,9 +9,9 @@ import { faCheck, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 import { ClipData, Tag } from "../@types";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const API_URL = process.env.API_URL;
 
-export default function ClipItem({ clipData }: { clipData: ClipData[] }) {
+export default function ClipItem({ clipData = [] }: { clipData: ClipData[] }) {
   const router = useRouter();
 
   const [isBookmarked, setBookmarked] = useState(clipData.map((data) => data.bookmarked));

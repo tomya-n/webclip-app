@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 import { JSDOM } from "jsdom";
+import { useRouter } from 'next/router'
+import { log } from "console";
 
 const prisma = new PrismaClient();
 
@@ -13,6 +15,7 @@ type FormatData = {
 
 export async function GET(req: NextRequest, res: NextResponse) {
   const searchParams = req.nextUrl.searchParams;
+  console.log(searchParams);
   const queryUrl = searchParams.get("url");
 
   if (!queryUrl) {

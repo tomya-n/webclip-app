@@ -15,7 +15,7 @@ COPY . .
 
 RUN npx prisma generate
 # Next.js のビルドを実行（必要に応じて）
-ENV NEXT_PUBLIC_API_URL=http://api:3001
+ENV API_URL=http://api:3001
 RUN npm run build
 # コンテナ起動時のコマンド
 CMD ["npm", "start"]

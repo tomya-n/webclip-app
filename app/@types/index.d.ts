@@ -7,8 +7,10 @@ export type ClipData = {
   tags: Tag[];
   archived: Boolean;
   user: string;
-  createdAt: DateTime;
-  updatedAt: DateTime;
+  // createdAt: DateTime;
+  // updatedAt: DateTime;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type Tag = {
