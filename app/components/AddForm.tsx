@@ -2,6 +2,8 @@
 
 import React, { ChangeEvent, useState } from "react";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 type postData = {
   title: string;
   url: string;
@@ -18,11 +20,11 @@ const AddForm = () => {
   });
 
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setData((prev: any) => ({ ...prev, [e.target.name]: e.target.value }));
     console.log(data);
   };
 
-  const onSubmitHandler = async (e: React.MouseEvent) => {
+  const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const newTags = data.tags.split(" ");
@@ -30,7 +32,7 @@ const AddForm = () => {
     console.log("newdata", newData);
 
     try {
-      const resNewData = await fetch(`http://localhost:3000/api`, {
+      const resNewData = await fetch(`${API_URL}/api`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

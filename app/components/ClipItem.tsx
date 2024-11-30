@@ -9,6 +9,8 @@ import { faCheck, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 import { ClipData, Tag } from "../@types";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 export default function ClipItem({ clipData }: { clipData: ClipData[] }) {
   const router = useRouter();
 
@@ -23,7 +25,7 @@ export default function ClipItem({ clipData }: { clipData: ClipData[] }) {
 
     const { id, bookmarked } = clipData[index];
 
-    fetch(`http://localhost:3000/api`, {
+    fetch(`${API_URL}/api`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -35,7 +37,7 @@ export default function ClipItem({ clipData }: { clipData: ClipData[] }) {
   const deleteBookmark = (index: number) => {
     const { id } = clipData[index];
 
-    fetch(`http://localhost:3000/api`, {
+    fetch(`${API_URL}/api`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

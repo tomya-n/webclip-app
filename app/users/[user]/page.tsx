@@ -1,7 +1,9 @@
 import ClipItem from "../../components/ClipItem";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 export default async function Home({ params }: { params: { user: string } }) {
-  const res = await fetch(`http://localhost:3000/api/users/${params.user}`, {
+  const res = await fetch(`${API_URL}/api/users/${params.user}`, {
     cache: "no-cache",
   });
   if (!res.ok) throw new Error("エラー発生！");

@@ -1,17 +1,17 @@
 export type ClipData = {
   id: number;
-  title: String;
-  description: String;
-  url: String;
+  title: string;
+  description: string;
+  url: string;
   bookmarked: Boolean;
   tags: Tag[];
   archived: Boolean;
-  user: String;
+  user: string;
   createdAt: DateTime;
   updatedAt: DateTime;
 };
 
 export type Tag = {
   id: number;
-  name: String;
+  name: string;
 };

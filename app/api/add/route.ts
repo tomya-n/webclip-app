@@ -8,27 +8,31 @@ type FormatData = {
   title: string;
   description: string;
   url: string;
-  tags?: string[];
-};
-
-export const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-  "Access-Control-Allow-Headers": "Content-Type, Authorization",
+  tags: any
 };
 
 export async function GET(req: NextRequest, res: NextResponse) {
   const searchParams = req.nextUrl.searchParams;
   const queryUrl = searchParams.get("url");
 
+  if (!queryUrl) {
+    throw new Error("The 'url' query parameter is missing or invalid.");
+  }
+
+
+  type MetaDataItem = {
+    name: string;
+    content: string;
+  };
+
   const queryUrlResponse = await fetch(queryUrl);
   const body = await queryUrlResponse.text();
   const dom = new JSDOM(body);
   const document = dom.window.document;
-  const metaData = [];
+  const metaData: MetaDataItem[] = [];
 
   const metaElements = document.querySelectorAll("meta");
-  metaElements.forEach((meta) => {
+  metaElements.forEach((meta:any) => {
     const name = meta.getAttribute("name") || meta.getAttribute("property");
     const content = meta.getAttribute("content");
     if (name && content) {
@@ -39,12 +43,13 @@ export async function GET(req: NextRequest, res: NextResponse) {
   });
 
   // 必要なメタデータのみをフィルタリング
-  const filteredMetaData = metaData.filter((item) => ["title", "url", "description"].includes(item.name));
+  const filteredMetaData = metaData.filter((item:any) => ["title", "url", "description"].includes(item.name));
 
   // データ構造を整形
   const formattedMetaData: FormatData = { title: "", url: "", description: "", tags: ["あとで読むらしい"] };
+
   filteredMetaData.forEach(({ name, content }) => {
-    formattedMetaData[name] = content;
+    (formattedMetaData as any)[name] = content;
   });
   console.log(formattedMetaData);
 
@@ -76,5 +81,5 @@ export async function GET(req: NextRequest, res: NextResponse) {
     await prisma.$disconnect();
   }
 
-  return NextResponse.json({ formattedMetaData }, { headers: corsHeaders });
+  return NextResponse.json({ formattedMetaData });
 }
