@@ -8,21 +8,15 @@ services:
     command: >
       sh -c "
       npx prisma generate &&
+      npx prisma migrate deploy &&
       npm run build &&
       npm run start" 
     ports:
       - "3001:3001"
     volumes:
       - .:/app
-    environment:
-      - NODE_ENV=production
-      - API_URL=http://localhost:3001
-      - DB_HOST=${DB_HOST}
-      - DB_PORT=${DB_PORT}
-      - DB_USER=${DB_USER}
-      - DB_PASSWORD=${DB_PASSWORD}
-      - DB_NAME=${DB_NAME}
-      - DB_URL=postgresql://${DB_USER}:${DB_PASSWORD}@db:4321/${DB_NAME}
+    env_file:
+      - .env
     depends_on:
       - db
 
@@ -35,7 +29,7 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
     ports:
-      - "4321:4321"
+      - "5432:5432"
 
 volumes:
   db_data:

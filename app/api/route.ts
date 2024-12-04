@@ -4,6 +4,19 @@ import { ClipData } from "../@types/index";
 
 const prisma = new PrismaClient();
 
+export async function OPTIONS() {
+  return NextResponse.json(
+    {},
+    {
+      headers: {
+        'Access-Control-Allow-Origin': '*', // 許可するオリジン
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',  // 許可するメソッド
+        'Access-Control-Allow-Headers': '*', // 許可するヘッダー
+      },
+    }
+  );
+}
+
 async function main() {
   try {
     await prisma.$connect();
@@ -22,7 +35,6 @@ export async function GET(req: Request, res: NextResponse) {
         createdAt: "desc",
       },
     });
-    // console.log(clipData);
 
     return NextResponse.json({ clipData });
   } catch (error) {
@@ -53,7 +65,13 @@ export async function POST(req: Request, res: NextResponse) {
         },
       },
     });
-    return NextResponse.json({ post });
+    console.log(post);
+    
+    return NextResponse.json({ post },{
+      headers: {
+        'Access-Control-Allow-Origin': 'http://localhost:3001',
+      },
+    });
   } catch (error) {
     console.error("Error", error);
     return NextResponse.json({ error });

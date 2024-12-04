@@ -9,7 +9,7 @@ const dummyTagData: Tag[] = [
   { id: 3 , name: "Docker" }
 ];
 
-const API_URL = process.env.API_URL || 'http://localhost:3001';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
 export default async function Home() {
   let tagData: Tag[] = [];
@@ -50,7 +50,7 @@ export default async function Home() {
 
 // 開発環境用のfetch関数
 async function fetchTagData() {
-  const API_URL = process.env.API_URL;
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const res = await fetch(`${API_URL}/api/tags`, {
     cache: "no-cache",
   });

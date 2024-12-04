@@ -13,9 +13,11 @@ RUN npm install
 # アプリケーションのソースコードをコピー
 COPY . .
 
+# .envをコピー
+COPY .env .env
 RUN npx prisma generate
-# Next.js のビルドを実行（必要に応じて）
 ENV API_URL=http://api:3001
+# Next.js のビルドを実行（必要に応じて）
 RUN npm run build
 # コンテナ起動時のコマンド
 CMD ["npm", "start"]

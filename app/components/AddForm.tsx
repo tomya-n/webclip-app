@@ -1,8 +1,9 @@
 "use client";
 
 import React, { ChangeEvent, useState } from "react";
+import { ClipData } from "../@types";
 
-const API_URL = process.env.API_URL;
+const API_URL = process.env.NEXT_PUBLIC_API_URL || undefined;
 
 type postData = {
   title: string;
@@ -11,7 +12,16 @@ type postData = {
   tags: string;
 };
 
-const AddForm = () => {
+type AddFormProps = {
+  onAddClip: (newClip: {
+    title: string;
+    url: string;
+    description: string;
+    tags: string[];
+  }) => void;
+};
+
+const AddForm = ({onAddClip}: AddFormProps) => {
   const [data, setData] = useState<postData>({
     title: "",
     url: "",
@@ -21,18 +31,18 @@ const AddForm = () => {
 
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setData((prev: any) => ({ ...prev, [e.target.name]: e.target.value }));
-    console.log(data);
   };
 
   const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const newTags = data.tags.split(" ");
+    const newTags = data.tags.split(" ").filter((tag) => tag !== "");
     const newData = { ...data, tags: newTags };
-    console.log("newdata", newData);
 
+    console.log("送信するデータ:", newData); // 送信前のデバッグログ
+    
     try {
-      const resNewData = await fetch(`${API_URL}/api`, {
+      const res = await fetch(`${API_URL}/api/add`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -40,9 +50,16 @@ const AddForm = () => {
         body: JSON.stringify(newData),
       });
 
-      await resNewData.json();
+      if (!res.ok) {
+        console.error("エラーが発生しました:", res.statusText);
+      } else {
+        const result = await res.json();
+        // 親コンポーネントに新しいクリップデータを通知
+        console.log("APIレスポンス:", result); // レスポンスデータを確認
+        onAddClip(result);
+      }
     } catch (error) {
-      console.error(error);
+      console.error("送信エラー:", error);
     } finally {
       setData({ title: "", url: "", description: "", tags: "" });
     }

@@ -7,24 +7,20 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faTrash } from "@fortawesome/free-solid-svg-icons";
 
-import { ClipData, Tag } from "../@types";
+import { ClipData } from "../@types";
 
-const API_URL = process.env.API_URL;
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export default function ClipItem({ clipData = [] }: { clipData: ClipData[] }) {
   const router = useRouter();
-
   const [isBookmarked, setBookmarked] = useState(clipData.map((data) => data.bookmarked));
+
   const toggleBookmark = (index: number) => {
-    console.log(index);
     const newBookmark = [...isBookmarked];
     newBookmark[index] = !newBookmark[index];
-    console.log(newBookmark);
-    console.log((clipData[index].bookmarked = newBookmark[index]));
     setBookmarked(newBookmark);
 
     const { id, bookmarked } = clipData[index];
-
     fetch(`${API_URL}/api`, {
       method: "PUT",
       headers: {
@@ -36,7 +32,6 @@ export default function ClipItem({ clipData = [] }: { clipData: ClipData[] }) {
 
   const deleteBookmark = (index: number) => {
     const { id } = clipData[index];
-
     fetch(`${API_URL}/api`, {
       method: "DELETE",
       headers: {
@@ -62,7 +57,7 @@ export default function ClipItem({ clipData = [] }: { clipData: ClipData[] }) {
                 {Array.isArray(data.tags)
                   ? data.tags.map((tag, tagIndex) => (
                       <li key={tagIndex} className="pr-1 font-thin text-sm">
-                        <Link href={`/tags/${tag.name}`} target="_blank" className="hover:underline bg-slate-200 px-1">
+                        <Link href={`/tags/${tag.name}`} className="hover:underline bg-slate-200 px-1">
                           {tag.name}
                         </Link>
                       </li>
